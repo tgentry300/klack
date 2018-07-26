@@ -2,7 +2,7 @@ const express = require('express')
 const querystring = require('querystring');
 const port = process.env.PORT || 3000
 const app = express()
-const dbUrl = process.env.MYACCOUNT_URI  ||  "mongodb://localhost:27017/klack"
+const dbUrl = process.env.MONGOLAB_MAUVE_URI  ||  "mongodb://localhost:27017/klack"
 
 const mongoose = require('mongoose')
 mongoose.connect(dbUrl)
