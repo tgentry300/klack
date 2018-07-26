@@ -1,12 +1,12 @@
 const express = require('express')
 const querystring = require('querystring');
-const port = 3000
+const port = process.env.PORT || 3000
 const app = express()
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/klack')
+mongoose.connect()
 
-const db = mongoose.connection
+const db = process.env.MONGOLAB_ONYX_URI  ||  "mongodb://localhost:27017/yourDatabaseName"
 
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
@@ -69,7 +69,8 @@ app.get("/messages", (request, response) => {
 
     messageModel.find(function(err, klack){
         if(err) return console.error(err)
-        console.log(klack)
+
+
         //send the latest 40 messages and the full user list, annotated with active flags
         response.send({
             messages: klack.slice(-40),
@@ -113,4 +114,4 @@ app.post("/messages", (request, response) => {
     })
 })
 
-app.listen(3000)
+app.listen(port)
