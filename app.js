@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000
 const app = express()
 
 const mongoose = require('mongoose')
-mongoose.connect()
+mongoose.connect(process.env.MONGODB_URI)
 
 const db = process.env.MONGOLAB_MAUVE_URI  ||  "mongodb://localhost:27017/klack"
 
