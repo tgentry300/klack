@@ -2,11 +2,12 @@ const express = require('express')
 const querystring = require('querystring');
 const port = process.env.PORT || 3000
 const app = express()
+const dbUrl = process.env.MONGOLAB_MAUVE_URI  ||  "mongodb://localhost:27017/klack"
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(dbUrl)
 
-const db = process.env.MONGOLAB_MAUVE_URI  ||  "mongodb://localhost:27017/klack"
+const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
