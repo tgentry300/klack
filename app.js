@@ -6,7 +6,7 @@ const app = express()
 const mongoose = require('mongoose')
 mongoose.connect()
 
-const db = process.env.MONGOLAB_ONYX_URI  ||  "mongodb://localhost:27017/yourDatabaseName"
+const db = process.env.MONGOLAB_MAUVE_URI  ||  "mongodb://localhost:27017/klack"
 
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
